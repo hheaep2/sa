@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MultiLang Video Hub</title>
+    <title>Oç altınsoylar - Çoklu Dil Ses</title>
     <style>
         * {
             margin: 0;
@@ -28,69 +28,90 @@
             text-align: center;
             margin-bottom: 40px;
             color: white;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
         }
 
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-weight: 300;
         }
 
         .main-content {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
             backdrop-filter: blur(10px);
         }
 
         .upload-section {
-            background: #f8f9ff;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 2px dashed #667eea;
-            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 3px dashed #667eea;
+            transition: all 0.4s ease;
         }
 
         .upload-section:hover {
             border-color: #764ba2;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
         }
 
         .upload-title {
             color: #667eea;
-            font-size: 1.4rem;
-            margin-bottom: 20px;
+            font-size: 2rem;
+            margin-bottom: 30px;
             text-align: center;
+            font-weight: 600;
         }
 
         .language-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
         }
 
         .language-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 10px;
+            gap: 20px;
+            padding: 20px;
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
         .language-item label {
-            font-weight: 600;
+            font-weight: 700;
             color: #555;
-            min-width: 80px;
+            min-width: 120px;
+            font-size: 1.1rem;
         }
 
         .file-input-wrapper {
@@ -100,260 +121,352 @@
 
         .file-input {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             border: 2px solid #e1e5e9;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
+            font-size: 1rem;
         }
 
         .file-input:hover {
             border-color: #667eea;
+            background-color: #f8f9ff;
         }
 
         .upload-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border: none;
-            padding: 15px 40px;
+            padding: 20px 50px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1.3rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             display: block;
-            margin: 30px auto 0;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .upload-btn:hover {
-            transform: translateY(-2px);
+            margin: 40px auto 0;
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
-        .video-section {
-            margin-top: 40px;
+        .upload-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+        }
+
+        .audio-section {
+            margin-top: 50px;
         }
 
         .section-title {
             color: #667eea;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
             text-align: center;
+            font-weight: 600;
         }
 
         .language-selector {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .lang-btn {
-            padding: 12px 25px;
+            padding: 18px 25px;
             background: white;
-            border: 2px solid #e1e5e9;
-            border-radius: 50px;
+            border: 3px solid #e1e5e9;
+            border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
+            font-weight: 700;
             color: #555;
+            text-align: center;
+            font-size: 1rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .lang-btn:hover {
             border-color: #667eea;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
         .lang-btn.active {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border-color: transparent;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
         }
 
-        .video-container {
-            background: #f8f9ff;
-            border-radius: 15px;
-            padding: 30px;
+        .audio-container {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f2ff 100%);
+            border-radius: 20px;
+            padding: 40px;
             text-align: center;
-            min-height: 400px;
+            min-height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        .video-player {
-            max-width: 100%;
-            width: 800px;
-            height: 450px;
+        .audio-player {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
-        .no-video {
+        .audio-player::-webkit-media-controls-panel {
+            background-color: white;
+            border-radius: 15px;
+        }
+
+        .no-audio {
             color: #888;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
+            font-weight: 500;
         }
 
         .success-message {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 2px solid #28a745;
             color: #155724;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
             text-align: center;
             display: none;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            .main-content {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .language-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .language-selector {
-                justify-content: center;
-                gap: 8px;
-            }
-            
-            .lang-btn {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
-            
-            .video-player {
-                width: 100%;
-                height: 250px;
-            }
-        }
-
-        .flag {
-            font-size: 1.2rem;
-            margin-right: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .current-language {
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.2rem;
+            margin-bottom: 30px;
+            font-size: 1.4rem;
             color: #667eea;
-            font-weight: 600;
+            font-weight: 700;
+            padding: 15px 30px;
+            background: white;
+            border-radius: 50px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .flag {
+            font-size: 1.5rem;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .main-content {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .language-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .language-selector {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 12px;
+            }
+            
+            .lang-btn {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+                min-height: 60px;
+            }
+        }
+
+        .audio-info {
+            margin-top: 20px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .play-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🎥 Oç altınsoylar</h1>
-            <p class="subtitle">Videolarınızı farklı dillerde paylaşın</p>
+            <span class="header-icon">🎧</span>
+            <h1>Oç altınsoylar</h1>
+            <p class="subtitle">Seslerinizi farklı dillerde paylaşın</p>
         </header>
 
         <div class="main-content">
             <!-- Upload Section -->
             <div class="upload-section">
-                <h2 class="upload-title">📤 Video Yükleme</h2>
+                <h2 class="upload-title">🎵 Ses Yükleme</h2>
                 <div class="success-message" id="successMessage">
-                    ✅ Videolar başarıyla yüklendi!
+                    ✅ Ses dosyaları başarıyla yüklendi!
                 </div>
                 <div class="language-grid">
                     <div class="language-item">
                         <label>🇹🇷 Türkçe:</label>
                         <div class="file-input-wrapper">
-                            <input type="file" class="file-input" accept="video/*" data-lang="tr" onchange="handleFileSelect(this)">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="tr" onchange="handleFileSelect(this)">
                         </div>
                     </div>
                     <div class="language-item">
                         <label>🇺🇸 English:</label>
                         <div class="file-input-wrapper">
-                            <input type="file" class="file-input" accept="video/*" data-lang="en" onchange="handleFileSelect(this)">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="en" onchange="handleFileSelect(this)">
                         </div>
                     </div>
                     <div class="language-item">
                         <label>🇪🇸 Español:</label>
                         <div class="file-input-wrapper">
-                            <input type="file" class="file-input" accept="video/*" data-lang="es" onchange="handleFileSelect(this)">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="es" onchange="handleFileSelect(this)">
                         </div>
                     </div>
                     <div class="language-item">
                         <label>🇫🇷 Français:</label>
                         <div class="file-input-wrapper">
-                            <input type="file" class="file-input" accept="video/*" data-lang="fr" onchange="handleFileSelect(this)">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="fr" onchange="handleFileSelect(this)">
                         </div>
                     </div>
                     <div class="language-item">
                         <label>🇩🇪 Deutsch:</label>
                         <div class="file-input-wrapper">
-                            <input type="file" class="file-input" accept="video/*" data-lang="de" onchange="handleFileSelect(this)">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="de" onchange="handleFileSelect(this)">
                         </div>
                     </div>
                     <div class="language-item">
                         <label>🇮🇹 Italiano:</label>
                         <div class="file-input-wrapper">
-                            <input type="file" class="file-input" accept="video/*" data-lang="it" onchange="handleFileSelect(this)">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="it" onchange="handleFileSelect(this)">
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <label>🇷🇺 Русский:</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="ru" onchange="handleFileSelect(this)">
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <label>🇯🇵 日本語:</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="ja" onchange="handleFileSelect(this)">
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <label>🇰🇷 한국어:</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="ko" onchange="handleFileSelect(this)">
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <label>🇨🇳 中文:</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" class="file-input" accept="audio/*" data-lang="zh" onchange="handleFileSelect(this)">
                         </div>
                     </div>
                 </div>
-                <button class="upload-btn" onclick="uploadVideos()">🚀 Videoları Yükle</button>
+                <button class="upload-btn" onclick="uploadAudios()">🚀 Sesleri Yükle</button>
             </div>
 
-            <!-- Video Player Section -->
-            <div class="video-section">
-                <h2 class="section-title">🎬 Video İzleme</h2>
+            <!-- Audio Player Section -->
+            <div class="audio-section">
+                <h2 class="section-title">🎵 Ses Dinleme</h2>
                 
                 <div class="language-selector">
                     <button class="lang-btn" data-lang="tr" onclick="selectLanguage('tr')">
-                        <span class="flag">🇹🇷</span>Türkçe
+                        <span class="flag">🇹🇷</span>
+                        <span>Türkçe</span>
                     </button>
                     <button class="lang-btn" data-lang="en" onclick="selectLanguage('en')">
-                        <span class="flag">🇺🇸</span>English
+                        <span class="flag">🇺🇸</span>
+                        <span>English</span>
                     </button>
                     <button class="lang-btn" data-lang="es" onclick="selectLanguage('es')">
-                        <span class="flag">🇪🇸</span>Español
+                        <span class="flag">🇪🇸</span>
+                        <span>Español</span>
                     </button>
                     <button class="lang-btn" data-lang="fr" onclick="selectLanguage('fr')">
-                        <span class="flag">🇫🇷</span>Français
+                        <span class="flag">🇫🇷</span>
+                        <span>Français</span>
                     </button>
                     <button class="lang-btn" data-lang="de" onclick="selectLanguage('de')">
-                        <span class="flag">🇩🇪</span>Deutsch
+                        <span class="flag">🇩🇪</span>
+                        <span>Deutsch</span>
                     </button>
                     <button class="lang-btn" data-lang="it" onclick="selectLanguage('it')">
-                        <span class="flag">🇮🇹</span>Italiano
+                        <span class="flag">🇮🇹</span>
+                        <span>Italiano</span>
+                    </button>
+                    <button class="lang-btn" data-lang="ru" onclick="selectLanguage('ru')">
+                        <span class="flag">🇷🇺</span>
+                        <span>Русский</span>
+                    </button>
+                    <button class="lang-btn" data-lang="ja" onclick="selectLanguage('ja')">
+                        <span class="flag">🇯🇵</span>
+                        <span>日本語</span>
+                    </button>
+                    <button class="lang-btn" data-lang="ko" onclick="selectLanguage('ko')">
+                        <span class="flag">🇰🇷</span>
+                        <span>한국어</span>
+                    </button>
+                    <button class="lang-btn" data-lang="zh" onclick="selectLanguage('zh')">
+                        <span class="flag">🇨🇳</span>
+                        <span>中文</span>
                     </button>
                 </div>
 
-                <div class="current-language" id="currentLanguage">
-                    Bir dil seçin
+                <div style="text-align: center;">
+                    <div class="current-language" id="currentLanguage">
+                        Bir dil seçin
+                    </div>
                 </div>
 
-                <div class="video-container">
-                    <div class="no-video" id="noVideo">
-                        📹 Video izlemek için önce bir dil seçin ve video yükleyin
+                <div class="audio-container">
+                    <div class="no-audio" id="noAudio">
+                        <div class="play-icon">🎵</div>
+                        Ses dinlemek için önce bir dil seçin ve ses dosyası yükleyin
                     </div>
-                    <video class="video-player" id="videoPlayer" controls style="display: none;">
-                        Tarayıcınız video oynatmayı desteklemiyor.
-                    </video>
+                    <audio class="audio-player" id="audioPlayer" controls style="display: none;">
+                        Tarayıcınız ses oynatmayı desteklemiyor.
+                    </audio>
+                    <div class="audio-info" id="audioInfo" style="display: none;">
+                        🎧 Ses dosyası başarıyla yüklendi
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Video depolama - gerçek uygulamada sunucuda olacak
-        let uploadedVideos = {};
+        // Ses depolama
+        let uploadedAudios = {};
         let currentLang = null;
 
         const languageNames = {
@@ -362,7 +475,11 @@
             es: 'Español',
             fr: 'Français',
             de: 'Deutsch',
-            it: 'Italiano'
+            it: 'Italiano',
+            ru: 'Русский',
+            ja: '日本語',
+            ko: '한국어',
+            zh: '中文'
         };
 
         function handleFileSelect(input) {
@@ -370,51 +487,51 @@
             const lang = input.dataset.lang;
             
             if (file) {
-                // Dosya boyutu kontrolü (100MB limit)
-                if (file.size > 100 * 1024 * 1024) {
-                    alert('Dosya boyutu 100MB\'dan küçük olmalıdır.');
+                // Dosya boyutu kontrolü (50MB limit)
+                if (file.size > 50 * 1024 * 1024) {
+                    alert('Dosya boyutu 50MB\'dan küçük olmalıdır.');
                     input.value = '';
                     return;
                 }
                 
-                // Video tipi kontrolü
-                if (!file.type.startsWith('video/')) {
-                    alert('Lütfen geçerli bir video dosyası seçin.');
+                // Ses tipi kontrolü
+                if (!file.type.startsWith('audio/')) {
+                    alert('Lütfen geçerli bir ses dosyası seçin.');
                     input.value = '';
                     return;
                 }
                 
                 // Dosyayı memory'de sakla
                 const url = URL.createObjectURL(file);
-                uploadedVideos[lang] = {
+                uploadedAudios[lang] = {
                     file: file,
                     url: url,
                     name: file.name
                 };
                 
-                console.log(`${languageNames[lang]} videosu hazırlandı: ${file.name}`);
+                console.log(`${languageNames[lang]} sesi hazırlandı: ${file.name}`);
             }
         }
 
-        function uploadVideos() {
-            const uploadedCount = Object.keys(uploadedVideos).length;
+        function uploadAudios() {
+            const uploadedCount = Object.keys(uploadedAudios).length;
             
             if (uploadedCount === 0) {
-                alert('Lütfen en az bir video dosyası seçin.');
+                alert('Lütfen en az bir ses dosyası seçin.');
                 return;
             }
             
             // Başarı mesajını göster
             const successMsg = document.getElementById('successMessage');
             successMsg.style.display = 'block';
-            successMsg.innerHTML = `✅ ${uploadedCount} video başarıyla yüklendi!`;
+            successMsg.innerHTML = `✅ ${uploadedCount} ses dosyası başarıyla yüklendi!`;
             
             // 3 saniye sonra gizle
             setTimeout(() => {
                 successMsg.style.display = 'none';
             }, 3000);
             
-            console.log('Yüklenen videolar:', uploadedVideos);
+            console.log('Yüklenen sesler:', uploadedAudios);
         }
 
         function selectLanguage(lang) {
@@ -429,32 +546,39 @@
             currentLang = lang;
             
             // Dil bilgisini güncelle
-            document.getElementById('currentLanguage').textContent = `Seçili Dil: ${languageNames[lang]}`;
+            document.getElementById('currentLanguage').innerHTML = `🎵 Seçili Dil: ${languageNames[lang]}`;
             
-            // Video oynatıcısını güncelle
-            updateVideoPlayer(lang);
+            // Ses oynatıcısını güncelle
+            updateAudioPlayer(lang);
         }
 
-        function updateVideoPlayer(lang) {
-            const videoPlayer = document.getElementById('videoPlayer');
-            const noVideo = document.getElementById('noVideo');
+        function updateAudioPlayer(lang) {
+            const audioPlayer = document.getElementById('audioPlayer');
+            const noAudio = document.getElementById('noAudio');
+            const audioInfo = document.getElementById('audioInfo');
             
-            if (uploadedVideos[lang]) {
-                // Video var, oynat
-                videoPlayer.src = uploadedVideos[lang].url;
-                videoPlayer.style.display = 'block';
-                noVideo.style.display = 'none';
+            if (uploadedAudios[lang]) {
+                // Ses var, oynat
+                audioPlayer.src = uploadedAudios[lang].url;
+                audioPlayer.style.display = 'block';
+                noAudio.style.display = 'none';
+                audioInfo.style.display = 'block';
+                audioInfo.innerHTML = `🎧 ${uploadedAudios[lang].name}`;
                 
-                // Video yüklendiğinde otomatik başlat (isteğe bağlı)
-                videoPlayer.addEventListener('loadeddata', () => {
-                    console.log(`${languageNames[lang]} videosu yüklendi`);
+                // Ses yüklendiğinde log
+                audioPlayer.addEventListener('loadeddata', () => {
+                    console.log(`${languageNames[lang]} sesi yüklendi`);
                 });
                 
             } else {
-                // Video yok
-                videoPlayer.style.display = 'none';
-                noVideo.style.display = 'block';
-                noVideo.innerHTML = `📹 ${languageNames[lang]} dilinde henüz video yüklenmedi`;
+                // Ses yok
+                audioPlayer.style.display = 'none';
+                audioInfo.style.display = 'none';
+                noAudio.style.display = 'block';
+                noAudio.innerHTML = `
+                    <div class="play-icon">🎵</div>
+                    ${languageNames[lang]} dilinde henüz ses yüklenmedi
+                `;
             }
         }
 
@@ -465,13 +589,12 @@
 
         // Cleanup - memory leak önleme
         window.addEventListener('beforeunload', () => {
-            Object.values(uploadedVideos).forEach(video => {
-                if (video.url) {
-                    URL.revokeObjectURL(video.url);
+            Object.values(uploadedAudios).forEach(audio => {
+                if (audio.url) {
+                    URL.revokeObjectURL(audio.url);
                 }
             });
         });
     </script>
 </body>
-
 </html>
